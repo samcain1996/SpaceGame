@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/Sam/source/repos/Galaga/Galaga/Content/deathSound.wav</SourceFile>
+  <SourceTime>2020-07-02T14:37:51.3598007-05:00</SourceTime>
+  <DestFile>C:/Users/Sam/source/repos/Galaga/Galaga/Content/bin/Windows/Content/deathSound.xnb</DestFile>
+  <DestTime>2020-07-02T14:42:41.7672642-05:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2018-12-08T10:35:54-06:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2018-12-08T10:35:54-06:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

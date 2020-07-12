@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/Sam/source/repos/Galaga/Galaga/Content/laser.wav</SourceFile>
+  <SourceTime>2020-07-02T14:34:45.2759095-05:00</SourceTime>
+  <DestFile>C:/Users/Sam/source/repos/Galaga/Galaga/Content/bin/Windows/Content/laser.xnb</DestFile>
+  <DestTime>2020-07-02T14:36:02.4222071-05:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2018-12-08T10:35:54-06:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2018-12-08T10:35:54-06:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

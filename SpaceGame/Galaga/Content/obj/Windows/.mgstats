@@ -1,0 +1,5 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/Sam/source/repos/Galaga/Galaga/Content/enemy.png","C:/Users/Sam/source/repos/Galaga/Galaga/Content/bin/Windows/enemy.xnb","TextureProcessor","Texture2DContent",2278,4181,0.0850769
+"C:/Users/Sam/source/repos/Galaga/Galaga/Content/Fonts/Ass.spritefont","C:/Users/Sam/source/repos/Galaga/Galaga/Content/bin/Windows/Fonts/Ass.xnb","FontDescriptionProcessor","SpriteFontContent",2008,70673,0.2091902
+"C:/Users/Sam/source/repos/Galaga/Galaga/Content/ship.tif","C:/Users/Sam/source/repos/Galaga/Galaga/Content/bin/Windows/ship.xnb","TextureProcessor","Texture2DContent",2736,4181,0.0050047
+"C:/Users/Sam/source/repos/Galaga/Galaga/Content/star.png","C:/Users/Sam/source/repos/Galaga/Galaga/Content/bin/Windows/star.xnb","TextureProcessor","Texture2DContent",136,4181,0.0040124

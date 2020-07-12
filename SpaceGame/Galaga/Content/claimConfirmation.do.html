@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html><head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	
+	<link rel="stylesheet" type="text/css" href="claimConfirmation.do_files/page-layouts-21.css"> 
+	<link rel="stylesheet" type="text/css" href="claimConfirmation.do_files/corev4.css">
+	<link rel="stylesheet" type="text/css" href="claimConfirmation.do_files/bootstrap-custom.css"> 
+	<link rel="stylesheet" type="text/css" href="claimConfirmation.do_files/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="claimConfirmation.do_files/bootstrap-responsive.css">
+	<link rel="stylesheet" type="text/css" href="claimConfirmation.do_files/CustomCssBootstrap.css">
+	<link rel="stylesheet" type="text/css" href="claimConfirmation.do_files/main.css">
+	<link rel="stylesheet" type="text/css" href="claimConfirmation.do_files/jquery-ui-smoothness.css">
+	<link rel="stylesheet" type="text/css" href="claimConfirmation.do_files/fileMyClaim.css">
+	
+	
+  	<script src="claimConfirmation.do_files/jquery-1.js"></script>
+	<script src="claimConfirmation.do_files/jquery.js"></script>
+	<script src="claimConfirmation.do_files/additional-methods.js"></script>
+  	<script src="claimConfirmation.do_files/jquery-migrate-1.js"></script>
+  
+	<script src="claimConfirmation.do_files/jquery_003.js"></script>
+	<script src="claimConfirmation.do_files/jquery_002.js"></script>
+	<script src="claimConfirmation.do_files/bootstrap.js"></script>
+	<script src="claimConfirmation.do_files/jquery_005.js"></script>
+	<script src="claimConfirmation.do_files/jquery-ui-1.js"></script>
+	<script src="claimConfirmation.do_files/jquery_004.js"></script>
+	<script src="claimConfirmation.do_files/moment.js"></script>
+	
+	
+	
+	<script type="text/javascript">	
+		var contextPath='/Benefits';
+		
+	</script>
+	
+	<script type="text/javascript">
+		window.history.forward();
+		
+		//window.onbeforeunload = function() { return "You work will be lost."; };
+		
+		function noBack() { 
+			window.history.forward(); 
+		}
+	</script>		
+	
+	<script type="text/javascript">   
+		$(document).ready(function () {
+
+		//Main navigation on home page - indents the items under the headings
+		$("div[class^='nav-column']").each(function (index) {
+			$($(this).find("a.Sub").parent()).contents().wrapAll("<ul>");
+		});
+		$("div[class^='nav-column']").find("li:empty").remove();
+
+
+		//This resets the height of the #s4-workspace div
+		$("#s4-workspace").height($(window).height() - ($("#suiteBar").height() + $("s4-ribbonrow").height()));
+
+		//Update the #s4-workspace when the browser window changes
+		$(window).resize(function () {
+			$("#s4-workspace").height($(window).height() - ($("#suiteBar").height() + $("s4-ribbonrow").height()));
+		}); 
+		
+		function adjustIframes() {
+			$('iframe').each(function(){
+				var $this = $(this),
+					proportion = $this.data( 'proportion' ),
+					w = $this.attr('width'),
+					actual_w = $this.width();
+				if ( ! proportion ) {
+					proportion = $this.attr('height') / w;
+					$this.data( 'proportion', proportion );
+				}
+	  
+				if ( actual_w != w ) {
+					$this.css( 'height', Math.round( actual_w * proportion ) + 'px' );
+				}
+			});
+		}
+		$(window).on('resize load',adjustIframes);
+   
+   		$('a').click(function(event) {
+   			var objectClass = event.currentTarget.className;
+   			var blocked = '';
+			if(objectClass.indexOf('cancelProcess') > -1 && !blocked) {
+				var currentLink = window.location.pathname;
+				event.preventDefault();
+				var targetHREF = this.href;
+				if(currentLink.indexOf("/fileMyClaim") > -1 || currentLink.indexOf("/certification") > -1) {
+					$('<div class="depDialog"></div>').appendTo('body')
+				    .html('<div style="font-size:0.8em;">' + conf1035 + '</div>')
+				    .dialog({
+				        modal: true,
+				        title: 'Confirm !',
+				        zIndex: 10000,
+				        autoOpen: true,
+				        width: 650,
+				        resizable: false,
+				        closeOnEscape: false,
+				        draggable: false,
+				        dialogClass:"dep-dialog",
+				        buttons: {
+				          	Ok: function () {
+				        	  	$(this).remove();
+				        	  	window.location.href = targetHREF;
+			        			
+				            },
+				            Cancel: function () {
+				            	//holdIt.depConf=false;
+				            	$(this).dialog("close");
+				            }
+				        },
+				        close: function (event, ui) {
+				        	//holdIt.depConf=false;
+				            $(this).remove();
+				            
+				        }
+				    });
+				} else {
+					window.location.href = targetHREF;
+				}
+			}
+		});
+	}); // End of Document Ready
+
+</script>
+
+<script>
+	var finalist_validated = '<br/>'+'The following address meets the postal standard on file with the US Postal Service.  You may select the suggested address or the address you entered.';
+	var finalist_couldNotValidate = '<br/>'+'We could not validate the address you entered. If the address you entered is correct, click Continue to proceed. Otherwise, please correct your information and click Continue to proceed.';
+	var finalist_multipleUnits = '<br/>'+'Our records indicate there are multiple units for this address. Please select and update the address you entered, include a unit or apartment number, and click Continue to proceed.';
+	var dateOfClaim = '03/15/2020';
+	var claimTypeCode = '1';
+	var selected1099G = 'Y';
+	var ERR525 = '<br/>'+'If you indicated you are returning to work, you must enter a Return to Work date.';
+	var ERR706 = '<br/>'+'You have entered a Return to Work Date prior to the effective date of your claim.  This indicates you are not currently unemployed.  If this date is incorrect, please correct. If this date is correct, please click Cancel My Application button below and reapply when you become unemployed.';
+	var amountInvalid='{0} must be a value greater than: 0.00';
+	var dateFormatInvalid='must be entered in the following format: mm/dd/yyyy';
+	var emailFormatInvalid='Your entered e-mail address is incorrect. <br>Enter address in format xxx@xxx.xxx';
+	var reEnterEmailInvalid='Your Re-entered E-Mail Address does not match <br>with your E-Mail Address';
+	var futureDateInvalid='cannot be a future date.';
+	var ageInvalid='Claimant must be 17 years old at the start of service.';
+	var fromDtBeforeTo='must be before';
+	var zipCodeInvalid='You have entered an invalid ZIP Code for the state of Illinois.';
+	var depNberErrMsg='Number of dependents need to match with the actual number of dependents';
+	var depValSsnConf='<b>IDES will soon require that Claimants provide the Social Security Numbers for each dependent child during claim filing.<br>Please click Continue to proceed.<b>';
+	var empDelConfMsg='This is the original period of employment you have entered for this employer. By deleting this period of employment, you will lose information for all the periods of employment related to this employer. Are you sure you want to delete?';
+	var depDOBUnder18_ERR164='Invalid Date of Birth Entry. Dependent Birthday must show dependent under 18 years of age.';
+	var depDOBOver18_ERR165='Invalid Date of Birth Entry. Dependent Birthday must show dependent over 18 years of age.';
+	var depDOBOver18_spouse_ERR1397='Invalid Date of Birth entry. Dependent  must be less than 116 years of age';
+	
+	var errCitySpecialCharacter = 'City must not contain numbers or special characters.';
+	var errZipCode1 = 'You have entered an invalid Illinois zip code. Please correct your zip code to continue.';
+	var errZipCode2 = 'The ZIP Code must only contain five or nine numbers.';
+	var errStartDateAfterLDW = 'You cannot have a start date after the last day of work for an employer.';
+	var errStartDateBeforeDOB = 'Your most recent start date cannot be prior to your date of birth.';
+	var errStartDateAfter17 = 'Start Date can not be prior to your 17th Birthday.';
+	var errSameLDWSameEmployer = 'Your Last day worked cannot be same or prior to the previous last day work for the same employer in a new period of employment. ';
+	var errNumDaysWorkedZero = 'Number of Days Worked cannot be equal to zero between the Start Date and Last Day Worked listed.';
+	var errNumWeeksWorked = 'The number of weeks you have entered exceeds the number of days between the most recent start date and the last day you worked for the employer.';
+	var errLDWPlus6 = 'Last Day Worked cannot be greater than the Date of Claim plus six days.<br/>';
+	var errNumDaysWorked = 'Number of Days Worked cannot be greater than the number of days between the Start Date and Last Day Worked.';
+	var errStartDateFuture = 'cannot be a future date.';
+	var errNumDaysWeekWorked = 'Allow only whole numbers between 1 and 7.';
+	var errorNumeric = 'This question must only contain numbers.';
+	var errorDate = 'must be entered in the following format: mm/dd/yyyy';
+	var noEmploymentWarning = 'You must provide employment details to file a claim online.';
+	var ldwWarning = 'Are you sure your Last Day of Work is correct? Please verify your last day of work and then click Continue to proceed.';
+	var err443 = 'Please complete the required fields.';
+	
+	
+	var fDayOfBasePeriod = '';
+	var lDayOfBasePeriod = '';
+	var newClaimType = 'true';
+	var noEmployerConfMsg ='You must provide employment details to file a claim online.';
+	
+	var conf1035 = 'You have not saved the data entered. You will lose the data if you navigate away from this page. Are you sure you want to leave the current page?';
+	var conf1112 = 'Are you sure you want to cancel your application? All information entered up to this point will be lost! Click &quot;YES&quot; to cancel the claim application or &quot;NO&quot; to resume filing your claim.';
+	var conf1120 = 'You indicated that you have earned $0.00 wages this week.Please click OK to confirm or update your wages.';
+	var errRTWBeforeDOC = 'You have entered a Return to Work Date prior to the effective date of your claim.  This indicates you are not currently unemployed.  If this date is incorrect, please correct. If this date is correct, please click Cancel My Application button below and reapply when you become unemployed.';
+	var err1384 = 'You must not enter the same dates more than once for Date worked after {0}';
+	var err1385 = 'You must complete information for at least one row.';
+	
+	
+	var err019 = function(fieldName) {
+		return ''+fieldName+' cannot be a future date.<br/>';
+	};
+	
+	var checkBlank = function(val) {
+		if (val == null || val == "" || val === undefined)
+			return true;
+		else
+			return false;
+	};
+	
+	var blankCurrency = function(val) {
+		if(!checkBlank(val) && val != '0.00') {
+			return false;
+		}
+		return true;
+	}
+	
+	var textCharCount = function(val, label) {
+		var len = val.value.length;
+		var maxLength = val.maxLength;
+    	if (len >= maxLength) {
+	      $('#'+label).text(len);
+	      val.value = val.value.substring(0, maxLength);
+	    } else {
+	      $('#'+label).text(len);
+	    }
+	};
+
+
+	
+</script>
+
+<style type="text/css" media="print">@page { size: landscape; }</style></head> 
+ 
+
+
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="">
+	<div id="s4-workspace" style="height: 1300px;">
+		<div id="s4-bodyContainer">
+		<!--page status bar including if a page is checked out, ready for publishing, etc-->
+			<img src="claimConfirmation.do_files/image_background.png" class="bg">
+			<!--title row-->
+			<div id="header" class="masthead container-fluid s4-notdlg">
+				
+
+
+
+
+
+
+
+
+<!-- BANNER STARTS -->
+<div class="header clearfix">
+	<div id="HeaderRow" class="row-fluid span12">
+		<div class="span4">
+			<!--logo-->
+			<div class="pull-left">
+				<a id="ctl00_onetidProjectPropertyTitleGraphic" href="http://www.ides.illinois.gov/"><img src="claimConfirmation.do_files/logo.png" title="Illinois Department of Employment Security"></a>
+			</div>
+		</div>
+		
+		<div class="span4">
+			<div class="span12 noindex"></div>
+			<div class="stateseal">
+				<img src="claimConfirmation.do_files/State-Seal.png">
+			</div>
+		</div>
+	</div>
+</div>
+<!-- BANNER ENDS -->
+<!-- BANNER MENU STARTS -->
+
+
+
+<form id="headerForm" name="headerForm" novalidate="novalidate" action="/Benefits/profile/headerSubmit.do" method="post">
+ 
+	<div id="megaMenu" class="noindex">
+	
+		<ul class="nav" id="ipMenu">
+	
+			
+				
+			
+			<li class="hdblank" style="width:18%"><a>&nbsp;</a></li>
+			<li class="hdindividuals" style="width:22%"><a>Individual Home</a>
+				<div class="noindex contindividuals">
+					<div class="noindex nav-column-individuals1">
+						<ul>
+							<li><a class="Sub">&nbsp;</a></li>
+							<!-- <li>
+								<a
+									href="http://www.ides.illinois.gov/Pages/Unemployment%20Insurance.aspx"
+									class="Main">Unemployment Insurance (UI)
+								</a>
+							</li> -->
+							<li>
+								<a href="https://benefits.ides.illinois.gov/Benefits/fileMyClaim.do" class="Sub cancelProcess"> 
+									File My Unemployment Claim
+								</a>
+							</li>
+							<li>
+								<a href="https://benefits.ides.illinois.gov/Benefits/certification/certificationWelcomeStart.do" class="Sub cancelProcess"> 
+									File My Certification
+								</a>
+							</li>
+							<li>
+								<a href="https://benefits.ides.illinois.gov/Benefits/payments/viewPaymentHistory.do" class="Sub cancelProcess"> 
+									View My Payment History
+								</a>
+							</li>
+							<li>
+								<a href="https://benefits.ides.illinois.gov/Benefits/request1099G.do" class="Sub cancelProcess"> 
+									Request 1099G
+								</a>
+							</li>
+							<li>
+								<a href="https://benefits.ides.illinois.gov/Benefits/validateSharedSecretsStart.do" class="Sub cancelProcess"> 
+									Change My Password
+								</a>
+							</li>
+	
+							<li>
+								<a href="https://benefits.ides.illinois.gov/Benefits/payments/enrollDirectDepositStart.do" class="Sub cancelProcess"> 
+									Enroll in Direct Deposit/Edit My Direct Deposit 
+								</a>
+							</li>
+							<li>
+								<a href="https://benefits.ides.illinois.gov/Benefits/changeAddress.do" class="Sub cancelProcess"> 
+									Change My Address
+								</a>
+							</li>
+							<!-- <li>
+								<a
+									href="http://www.ides.illinois.gov/Pages/Re-Entry_Employment_Service_Program.aspx"
+									class="Sub">Satisfactory Survey
+								</a>
+							</li> -->
+						</ul>
+					</div>
+				</div>
+			</li>
+	
+	
+			<li class="hdemployers">
+				<a href="http://www.ides.illinois.gov/Pages/Workforce_IllinoisJobLink.aspx" target="_blank">Illinois Job Link</a>
+			</li>
+	
+	
+			<li class="hdworkforcepartners">
+				<a>Language 
+					<select name="localeLang" id="localeLang" class="fieldSelection fieldRight" onchange="switchLocale();">
+						<option value="en" selected="selected">English
+						</option>
+						<option value="es">Spanish
+						</option>
+						<option value="pl">Polish
+						</option>
+					</select>
+				</a>
+			</li>
+	
+			
+				
+					<li class="hdtoolsandresources"><a href="https://benefits.ides.illinois.gov/Benefits/profile/logout.do">Logout</a></li>
+				
+			
+	</ul></div>
+	
+	<input type="hidden" name="currentURL" id="currentURL">
+
+</form>
+
+<script language="javascript">
+
+    var msgChangeLanguage = 'Changing your language selection will cause you to lose all previously entered data! Click OK to confirm or click CANCEL to resume filing your Unemployment Insurance services.';
+    var msgWarning = 'WARNING!';
+	
+	function switchLocale() {
+	
+		var currentPage = window.location.href;
+		
+		//alert(currentPage);
+		
+		if (currentPage.indexOf("request1099G") == -1 
+					&& (currentPage.indexOf("certificationWelcomeStart") == -1)
+					&& (currentPage.indexOf("certificationSummaryStart") == -1) 
+					&& (currentPage.indexOf("saveNewAddress") == -1)
+					&& (currentPage.indexOf("claimantHome") == -1)
+					&& (currentPage.indexOf("claimConfirmation") == -1)
+					&& (currentPage.indexOf("login") == -1)
+					&& (currentPage.indexOf("logout") == -1)
+					&& (currentPage.indexOf("createNewPasswordSubmit") == -1)
+					&& (currentPage.indexOf("createUsernameAndPasswordSubmit") == -1)
+			) { // not found
+				
+				event.preventDefault();
+				$('<div class="depDialog"></div>').appendTo('body')
+			    .html('<div style="font-size:0.8em;">' + msgChangeLanguage + '</div>')
+			    .dialog({
+			        modal: true,
+			        title: msgWarning,
+			        zIndex: 10000,
+			        autoOpen: true,
+			        width: 650,
+			        resizable: false,
+			        closeOnEscape: false,
+			        draggable: false,
+			        dialogClass:"dep-dialog",
+			        buttons: {
+			        	OK: function () {
+			        	  	$(this).remove();
+			        	  	document.getElementById("currentURL").value = window.location.href;
+							document.forms["headerForm"].submit();
+			    			
+			            },
+			            CANCEL: function () {
+			            	$(this).dialog("close");
+			            }
+			        },
+			        close: function (event, ui) {
+			        	holdIt.depConf=false;
+			            $(this).remove();
+			            
+			        }
+			    });
+		
+		} else {
+			document.getElementById("currentURL").value = window.location.href;
+			document.forms["headerForm"].submit();
+		}
+	
+		
+	
+		/* var changeLocale = confirm("You would loose any unsaved data. Are you sure you want to change the language ?");
+		
+		if (changeLocale == true) {
+			document.getElementById("currentURL").value = window.location.href;
+			document.forms["headerForm"].submit();
+		} */
+
+		
+		/* $.ajax({
+			type:"POST",
+			url:contextPath + "/profile/headerSubmit.do",
+			data:{localeLang : document.getElementById("localeLang").value},
+			success: function(){}
+		 }); */
+	}
+</script>
+
+			</div>
+			<!-- div id="menu">
+				
+			</div-->
+			<div id="content">
+				
+ 
+      
+
+   
+
+     
+ 
+ 
+  
+<script src="claimConfirmation.do_files/claimConfirmation.js"></script> 
+ 
+<form id="claimForm" name="claimForm" novalidate="novalidate" onsubmit="javascript:return expandAllAndPrint()" action="/Benefits/claim/claimConfirmation.do" method="post">
+
+	<!--WHITE_PANEL_MAIN_BODY STARTS -->
+	<div id="mainbody" class="container-fluid claimConfirmationDiv">
+		<div class="row-fluid">
+			<div class="s4-ca s4-ca-dlgNoRibbon span12" id="MSO_ContentTable" style="margin-left: 0px;">
+				<!-- Second Band (Image Left with Text) -->
+				<div class="row-fluid">
+					<div class="span12">
+						<div id="claimConfirmationDiv" class="row-fluid" style="padding-top: 25px; padding-left: 30px;">
+							<table width="90%">
+								<tbody><tr>
+									<td>
+										<div class="headerDiv">Confirmation Page </div>
+									</td>
+								</tr>
+								<tr align="right">
+									<td>
+										<div class="hdrFnt">
+											<input type="button" class="mainBtn" value="Print" name="PrintBtn" onclick="javascript:return expandAllAndPrint();">
+										</div>
+									</td>
+								</tr>
+							</tbody></table>
+							
+							<table class="cinfo"> 
+								
+								
+								<tbody><tr class="even" style="border:none;">
+									<td class="noTable" colspan="2">
+										<div>Your confirmation number 
+												<span style="margin-left:-17px;" title="" data-toggle="popover" data-trigger="hover" data-placement="top" data-html="true" data-container="body" data-content="&lt;div class=&quot;indent&quot;&gt;The confirmation number cannot be used to access your claim. This screen should be printed for proof of filing.&lt;/div&gt;" data-original-title="Confirmation Number">
+													<span style="margin-left:20px;" class="glyphicon glyphicon-info-sign infoColor"></span>
+												</span>
+												is
+												&nbsp;<span id="confirmationClaimId">16910809</span>.
+										</div><br> 
+										<div>Your claimant ID
+												<span style="margin-left:-17px;" title="" data-toggle="popover" data-trigger="hover" data-placement="top" data-html="true" data-container="body" data-content="Your Claimant ID is unique to you. To ensure that we look at your specific information, please provide us with this number anytime you communicate with us. " data-original-title="Confirmation Number">
+													<span style="margin-left:20px;" class="glyphicon glyphicon-info-sign infoColor"></span>
+												</span>
+												is
+												&nbsp;<span id="confirmationClaimId">6292657</span>.
+										</div><br> 
+										<div>
+											You have successfully submitted your claim to IDES on 
+												03/18/2020 at 12:52&nbsp;CST.
+										</div>
+										<div>
+											The effective date of your claim for unemployment is:
+												&nbsp;03/15/2020
+										</div>
+										 
+											<br>
+											<div class="hdrFnt">
+												What can I expect now that I have filed my claim?
+											</div>
+											<div> 
+												
+												
+													Based on answers you provided on your application for 
+Unemployment Insurance Benefits, you are not subject to the Illinois 
+Employment Service registration requirement. However, you are welcome to
+ use this as a job search resource. 
+												
+											</div>
+											 
+											<div>
+												To help with your job search, an IllinoisJobLink.com account was created for you when you applied for benefits.
+											</div>
+										
+											<br>
+											
+												<div>
+													Your IllinoisJobLink.com username is <b>SamCai!42</b> and your password is your <b>social security number</b>. Do not enter dashes when entering your social security number as your password.
+												</div>
+											
+											
+											<br> 
+											<div>
+												Click
+												&nbsp; 
+												<input type="button" onclick="window.open('https://illinoisjoblink.illinois.gov');" class="mainBtnSlim" value="Illinois Job Link" name="ijlBtn">
+												&nbsp;
+												to login and complete your registration with the Illinois 
+Employment Service. You will be prompted to create a new password as 
+soon as you log in.
+											</div>
+											
+										<br>
+										<div>
+											Once you have logged in, follow these steps.
+										</div> 
+										<br>
+										<div class="hdrFnt">
+											Create Resume.
+										</div>
+										<ul class="important">
+											<li class="important">Click "Continue" in the orange block.</li>
+											<li class="important">Answer all questions on the "New Resume Page".</li>
+											<li class="important">Upload a Microsoft Word resume or create a new resume.</li>
+											<li class="important">Select "Occupation-Work Wanted".</li>
+										</ul>
+
+										<div>
+											Once you complete your resume, it will remain active for 99 days.
+										</div>
+										<div>
+											IDES operates IllinoisJobLink.com on a secure server. All 
+information will be maintained in a secure and confidential manner as 
+prescribed by State and Federal law.
+										</div>
+										<div>
+											After your claim is filed, IDES will send you a statement called a "UI Finding".
+										</div>
+										<div>
+											The "UI Finding" will provide you information regarding the 
+effective date of your claim, the date you should certify, your base 
+period wages and your weekly benefit amount and dependent allowance, if 
+applicable.
+										</div>
+										<br>
+										<div class="hdrFnt">
+											<strong>Certifying for Benefits</strong>
+										</div>
+										<div>
+											To obtain benefits you must certify for them on a biweekly 
+basis. Your "UI Finding" will inform you of your first date to certify.
+										</div>
+										<br>
+										<div>
+											You will not receive Unemployment Insurance benefits if you 
+fail to certify. If you do not certify in a timely manner, your benefits
+ may be denied or delayed. For more information regarding certifying for
+ benefits, please return to the website and select the Individuals tab. 
+ Then select the link "Forms and Publications for Individuals" and 
+select "UI Benefits Handbook".
+										</div>
+										<br>
+										<div class="hdrFnt">
+											Payment Options
+										</div>
+										<div>
+											Debit Card - A debit card will be mailed to you if you do not
+ already have one or if you have not enrolled in direct deposit.  
+Benefits for which you are determined eligible will be deposited to this
+ card after you certify.
+										</div>
+										<br>
+										<div>
+											Direct Deposit - Your benefit payments can be deposited into your bank account automatically with Direct Deposit.
+										</div>
+									</td>
+								</tr>
+							</tbody></table>
+							<div id="claimHTML">
+								<table id="form" class="ccName">
+									<tbody>
+										<tr class="odd">
+											<td class="fieldLabel"><span class="indent"> <label for="firstName">First Name:
+														Samuel               </label>
+											</span> <span class="col-float-right padRight26"> <b>Middle Initial:
+														 </b>
+											</span></td>
+											<td align="center"><label for="lastName">Last Name:
+													Cain </label></td>  
+										</tr>
+									</tbody>
+								</table>
+								<div class="cConfirmation">
+									<div id="ccAccordion" class="ui-accordion ui-widget ui-helper-reset" role="tablist"> 
+										<h3 id="ccMyProfile" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all ui-accordion-icons" role="tab" aria-controls="ccPersonalConfirmation" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon ui-icon ui-icon-plus"></span>
+											<b>My Profile</b> 
+										</h3>
+										<div class="personalInfo ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="ccPersonalConfirmation" style="display: none;" aria-labelledby="ccMyProfile" role="tabpanel" aria-expanded="false" aria-hidden="true">
+											<table id="form">
+	<tbody>
+		<tr class="odd">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Is your mailing address same as residential?
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccAddSame">
+						
+							
+								
+									Yes
+								
+								
+							
+						
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		
+			
+				
+			
+		
+		<tr class="even" id="ccmailingAddress">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Mailing Address:
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccmailingAdd">
+						
+							
+								
+									<div></div>
+								
+								
+								
+									
+										<div>2066  TALL PINES LN</div>
+									
+									
+									
+										<div>CINCINNATI</div>
+									
+									
+											 Out of State
+									
+									
+											,&nbsp;OH &nbsp;United States
+									
+									
+											<div>45244-2781</div>
+									
+								
+								
+									<div>(630) 280-0785</div>
+								
+								
+								
+									<div>scain1996@outlook.com</div>
+								
+							
+						
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		
+			
+				
+			
+		
+		
+			
+			
+				
+					<tr class="even" id="cc1099GACCQ">
+						<td class="fieldLabel">
+							<div class="indent longColumn1">
+								Yes, I want to receive my 1099G electronically.
+							</div>
+							<div class="indent longColumn1">
+								<span id="fc1099GACC"></span>
+							</div>
+							<div class="shortColumn1">
+								<label></label>
+							</div>
+						</td>
+					</tr>
+				
+				
+			
+		
+
+		<tr class="odd" id="ccwithholdTaxFlagQ">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					I elect to have Federal Income Tax withheld from my gross Unemployment Insurance Benefit payments in the amount of 10%.
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccwithholdTaxFlag">
+						
+							
+								
+									Yes
+								
+								
+							
+						
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="even" id="ccwithholdStateTaxFlagQ">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					I elect to have State Income Tax withheld from my gross Unemployment Insurance Benefit payments in the amount of 4.95%.
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccwithholdStateTaxFlag">
+						
+							
+								
+									Yes
+								
+								
+							
+						
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="odd" id="cccitizenFlagQ">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Are you a U.S. citizen? <br>
+				</div>
+				<div class="shortColumn1">
+					<label><span id="fccitizenFlag">
+						
+							
+								
+									Yes
+								
+								
+							
+						
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		
+			
+				
+			
+		
+		<tr class="even" id="ccGenderQ">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Gender<br>
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccGender">
+						
+							
+								Male
+							
+						
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="odd" id="ccRaceQ">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Race<br>
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccRace">
+						
+							
+								White
+							
+						
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="even" id="ccethnicityQ">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Ethnic background<br>
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccethnicity">
+						
+							
+								Not Hispanic or Latino
+							
+						
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="odd" id="ccLanguageQ">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					What language do you prefer?<br>
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccLanguage">
+						
+							
+								English
+							
+						
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="even" id="fcEducationQ">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					What is the highest level of education you have completed?<br>
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccEducation">
+						
+							
+								Bachelors Degree
+							
+						
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="odd" id="fcDisabilityQ">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Do you have a disability as defined in Section 7 of the 1973 
+Rehabilitation Act or the Americans with Disabilities Act of 1990?<br>
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccDisability">
+						
+							
+								No
+							
+						
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="even" id="ccSeasonalWorkerQ">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Do you believe that you are a Seasonal Farmworker/Migrant after reading the definitions? <br>
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccSeasonalWorker">
+					
+						
+							
+							
+								No
+							
+						
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		
+			
+				
+			
+		
+		<tr class="odd">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Are you the spouse or other family caregiver of a wounded, ill, or injured service member?<br>
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccCaregiver">
+						
+							
+								
+								
+									No
+								
+							
+						
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="even">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Are you a U.S. Armed Services Veteran?<br>
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccVeteranFlag">
+						
+							
+								
+								
+									No
+								
+							
+						
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="odd">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Are you the spouse of a Veteran?<br>
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccVetSpouse">
+						
+							
+								
+								
+									No
+								
+							
+						
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="even">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Do you wish to claim dependents?<br>
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccDependents">
+						
+							
+								
+								
+									No
+								
+							
+						
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		
+			
+				
+			
+		
+		
+			
+				
+			
+		
+	</tbody>
+</table> 
+										</div>
+										 
+											
+												
+											
+										
+										
+											
+												
+											
+										
+										
+										<h3 id="ccEmployment" style="page-break-before: always;" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all ui-accordion-icons" role="tab" aria-controls="ui-accordion-ccAccordion-panel-1" aria-selected="false" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-plus"></span>
+											<b>Employment</b>
+										</h3>
+										<div class="ccEmploymentConfirmation ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" style="display: none;" id="ui-accordion-ccAccordion-panel-1" aria-labelledby="ccEmployment" role="tabpanel" aria-expanded="false" aria-hidden="true">
+											<table id="form" style="width:100%;">
+	<tbody>
+		
+			
+				
+					<tr class="even" id="mostRecent0">
+						<td class="fieldLabel" style="position: relative;">
+							<div id="recentEmployerColumn" class="indent longColumn1" style="float:left;width:25%;">
+								<p>
+									Most recent employer
+								</p>
+								<p id="recentOccupationColumn" style="position:absolute;bottom:20px;">
+									Most recent occupation
+								</p>
+							</div>
+							<div class="shortColumn1" style="float:right;width:70%">
+									<label><span>
+										Talener Group LLC<br>
+										
+											
+											
+												140 E 45th St<br>
+												
+													Suite 20A<br>
+												
+												
+													
+														New York
+													
+													, New York&nbsp;10017<br>
+												
+												
+												
+											
+										
+										
+											
+												
+												
+													(917) 720-1080
+													<br>
+													
+											
+										
+										 
+											
+											State Work Last Performed - Illinois <br>
+										 
+										
+											
+												
+											02/24/2020 - 03/13/2020<br>
+										
+											
+											15 days worked<br>
+										
+											
+											Typically worked 5 days in a week<br>
+											
+											
+											3 weeks earned at least $79.00<br>
+										
+										
+										
+											Laid-Off (Lack of Work)<br>
+										
+										
+										
+										
+										
+										15 - Computer/Mathematics
+									</span></label>
+							</div>
+							</td>
+							</tr>
+				
+				 
+			
+		
+			
+				
+				
+					
+						<tr class="odd">
+						<td class="fieldLabel">
+							<div class="indent longColumn1" style="float:left;width:25%">
+								Previous <span class="nowrap">employer(s)</span><br>
+							</div>
+							<div class="shortColumn1" style="float:right;width:70%">
+								<div>
+								<label><span>
+					
+					MICRO CENTER SALES CORPORATION<br>
+						
+							
+									4055 LEAP RD<br>HILLIARD, OH 43026-1115<br>
+							
+							
+						
+						
+							
+								
+									(614) 850-3000<br>
+								
+									
+							
+						
+						 
+							
+							State Work Last Performed - Illinois <br>
+						 	
+						
+							
+								
+							01/05/2020 - 02/18/2020<br>
+						
+							
+							32 days worked<br>
+						
+							
+							Typically worked 5 days in a week<br>
+							
+							
+							7 weeks earned at least $79.00<br>
+						
+						
+							
+							Quit<br>
+						
+						
+						
+						
+						41 - Sales and Related Svcs<br><br> 
+				 
+			
+		
+		
+			
+							</span></label></div>
+						</div>
+					</td>
+				</tr>
+			
+		
+		
+		<!-- FOR EMPLOYMENT QUESTIONNAIRE -->
+		
+			
+		
+			
+				
+					
+					
+						<tr class="odd">
+					
+				
+						<td class="fieldLabel potential">
+							<div>
+								<label>[MICRO CENTER SALES CORPORATION Voluntary Questionnaire]</label>
+							</div>
+						</td>
+					</tr>
+			
+		
+	</tbody>
+</table>
+										</div>
+										<h3 id="ccOccupation" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all ui-accordion-icons" role="tab" aria-controls="ccOccupationConfirmation" aria-selected="false" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-plus"></span>  
+											<b>Occupation</b>   
+										</h3>
+										<div class="occupationInformation ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="ccOccupationConfirmation" style="display: none;" aria-labelledby="ccOccupation" role="tabpanel" aria-expanded="false" aria-hidden="true">
+											<table id="form" style="width:100%;">
+	<tbody>
+		<tr class="even">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					<div>
+						Your deferred occupation<br>
+					</div>
+					
+				</div>
+				<div class="shortColumn1">
+				    <div>
+						<label><span id="ccDefOccupation">None of the above</span></label><br>
+					</div>
+						
+				</div>
+			</td>
+		</tr>
+		<tr class="odd">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Do you have a definite Return to Work date?<br>
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccRTWFlag">
+						
+								
+									
+									
+									No
+								
+								
+							
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		
+			
+				
+			
+		
+		<tr class="even">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Please describe your most recent job title.<br>
+				</div>
+				<div class="shortColumn1">	
+					<label><span id="ccJobTitle">Software Developer</span></label>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+										</div>
+										<h3 id="ccIncome" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all ui-accordion-icons" role="tab" aria-controls="ccIncomeConfirmation" aria-selected="false" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-plus"></span>
+											<b>Income and Training</b> 
+										</h3>
+										<div class="incomeInformation ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="ccIncomeConfirmation" style="display: none;" aria-labelledby="ccIncome" role="tabpanel" aria-expanded="false" aria-hidden="true">
+											
+<table id="form" style="width: 100%;">
+	<tbody>
+		<tr class="even">
+			<td class="fieldLabel">
+				<div class="indent">
+					<label for="grossPayAmountLbl" style="width: 67%"> Total Gross Wages earned since 03/15/2020.
+					</label> 
+					<label>
+						<span for="ccGrossPaySumAmount" class="fcGrossPaySumAmount" style="text-align:right;width:100px">
+							$ 0.00
+						</span>
+					</label>
+					
+					
+						
+						
+							
+						
+					
+						
+						
+							
+						
+					
+				</div>
+			</td>
+		</tr>
+		<tr class="odd">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Have you been self-employed or an independent contractor since 
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccSelfEmployed"> 
+								
+									
+									
+									No
+								
+								
+							
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="even">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Have you refused any offers of work since
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccRefusedWork"> 
+								
+									
+									
+									No
+								
+								
+							
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="odd">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Are you currently attending school or enrolled in a training program?
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccSchoolTrain"> 
+								
+									
+									
+									No
+								
+								
+							
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="even">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Are you receiving or have you applied for a pension or any retirement pay? 
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccRetirePay"> 
+								
+									
+									
+									No
+								
+								
+							
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		
+			
+				
+			
+		
+		<tr class="odd">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Are you receiving or have you applied for Trade Act Benefits?
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccTradeBenefit"> 
+								
+									
+									
+									No
+								
+								
+							
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="even">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Are you receiving or have you applied for Workers' Compensation?
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccWorkersComp"> 
+								
+									
+									
+									No
+								
+								
+							
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="odd">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Are you receiving or will you receive plant shut down pay?
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccPlantShutdown"> 
+								
+									
+									
+									No
+								
+								
+							
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="even">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Have you or will you receive holiday pay since 03/15/2020?
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccHolidayPay"> 
+								
+									
+									
+									No
+								
+								
+							
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="odd">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Are you receiving or have you applied for Railroad Unemployment?
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccRrUnemplFlag"> 
+								
+									
+									
+									No
+								
+								
+							
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		<tr class="even">
+			<td class="fieldLabel">
+				<div class="indent longColumn1">
+					Have you filed an unemployment insurance claim in another state since 03/18/2019?
+				</div>
+				<div class="shortColumn1">
+					<label><span id="ccOutOfState"> 
+								
+									
+									
+									No
+								
+								
+							
+					</span></label>
+				</div>
+			</td>
+		</tr>
+		
+			
+		
+		
+			
+				
+			
+		
+		
+			
+				
+			
+		
+		
+			
+				
+			
+		
+		
+	</tbody>
+</table>
+										</div>
+									</div>
+									<div>&nbsp;</div>
+								</div>
+							</div>
+							
+								<div>
+									<table id="form" class="ccWBAConfirmation">
+										<tbody><tr class="odd">
+											<td class="fieldLabel potential">
+												<div class="indent wbaAndDependent">
+													<b>Potential WBA</b>
+												</div>
+											</td>
+										</tr>
+										<tr class="even">
+											<td class="fieldLabel potential">
+												<div class="indent wbaAndDependent">
+													Estimated Weekly Benefit Amount
+													<b>&nbsp;&nbsp;
+													<span id="fcEstimatedWBA">
+														$79.00
+													</span>
+													</b>
+													
+													<span id="EstDepAllowance" style="margin-left: 300px;">
+														Estimated Dependent Allowance
+														<b>&nbsp;&nbsp;
+														<span id="fcDepAllowance">
+															
+																
+																	
+																	
+																		$0.00
+																	
+																
+															
+														</span></b>
+													</span><br>
+												</div>
+											</td>
+										</tr>
+										<tr class="odd">
+											<td class="fieldLabel potential">   
+												<div class="indent wbaAndDependent">
+													Your Potential Weekly Benefit Amount and Dependent 
+Allowance are estimates. The estimates are based on wages reported by 
+Illinois employers for whom you indicated you worked.
+												</div>
+											</td>  
+										</tr>
+									</tbody></table>
+								</div>
+									
+							<table class="cinfo">
+								<tbody><tr class="even" style="border:none;">
+									<td class="noTable" colspan="2"> 
+										<div>
+											If you don't receive the UI Finding within two weeks from the
+ date you filed this claim, please contact Claimant Services Center at 
+(800)244-5631.
+										</div>
+										<br>
+										<div>
+											If you were instructed during the application process to mail
+ or fax documents to IDES, please do so immediately. Fax documents to 
+(217) 557-4913. Failure to mail or fax documents may delay your 
+benefits.
+										</div>
+										<br>
+										<div>
+											For DD-214's only, fax to (630) 645-3723.
+										</div>
+										<br>
+										<div>
+											For further information, please contact Claimant Services Center at (800)244-5631.
+										</div>
+									</td>
+								</tr>
+							</tbody></table>
+							
+							<div id="cMessages"> 
+								
+								<table id="form">
+									<tbody><tr class="odd"> 
+										<td class="fieldLabel" colspan="3">
+											<div>
+					 							<label for="tddtty">TDD/TTY Assistance</label>
+					 							<br>
+					 							<span class="pageNotes" style="padding-left: 0px;">
+													If you are hearing impaired and need additional assistance 
+you may contact IDES. Agents are equipped with NexTalk software. To 
+contact the agency, please call Claimant Services Center at (866) 
+488-4016 between 8:30 am and 5:00 pm, Monday through Friday, excluding 
+state holidays.
+												</span>
+											 </div>	
+											
+										</td>
+									</tr>
+								</tbody></table>
+							</div> 
+							
+							<table width="90%">
+								<tbody><tr align="right">
+									<td>
+										<div>
+											<input type="button" class="mainBtn" value="Print" name="PrintBtn" onclick="javascript:return expandAllAndPrint();">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+							</tbody></table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>  
+</form>
+<script>
+	var columnH = $("#mostRecent0").height();
+	console.log("columnH pre >> " + columnH);
+	columnH = columnH - 0.20*columnH;
+	console.log("columnH post >> " + columnH);
+	$("#mostRecentOccupation").css("padding-top",columnH+"px");
+	var wh=screen.height;var ww=screen.width;var h = .02*wh;var w=.02*ww; var winH=wh-h;var winW=ww-w;
+	surveyWindow = window.open("satisfactionSurvey.do", "SATISFACTION SURVEY", 'location=0,status=0,scrollbars=1,width='+winW+',height='+winH);
+	
+	//CR2229 - Print Preview Internet Claim, initial snapshot.
+	var confirmationHTML = $("#claimHTML").html();
+	var claimId = 7675853;
+	//console.log("confirmationHTML >>>> " + confirmationHTML);
+	//console.log("claimId >>>> " + claimId);
+	saveConfirmationHTML(claimId, confirmationHTML);
+</script>
+
+			</div>
+			<div id="footer">
+				
+
+		<!-- FOOTER: FROM INCLUDE-->
+		<div id="footer">
+			© 2008. All rights reserved. 
+			<a href="http://www.ides.illinois.gov/Pages/Privacy.aspx" target="_blank">
+				Privacy Policy
+			</a>
+		</div>
+		<!-- END FOOTER -->
+
+			</div>
+		</div>
+	</div>
+
+
+</body></html>

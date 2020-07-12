@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Sam/source/repos/Galaga/Galaga/Content/enemy.png</File>
+    <File>C:/Users/Sam/source/repos/Galaga/Galaga/Content/Fonts/Ass.spritefont</File>
+    <File>C:/Users/Sam/source/repos/Galaga/Galaga/Content/ship.tif</File>
+    <File>C:/Users/Sam/source/repos/Galaga/Galaga/Content/star.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

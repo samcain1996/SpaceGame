@@ -1,0 +1,2334 @@
+/*****************************************************************************
+* 
+*	Copyright 2004 Accenture. All rights reserved. 
+*	Use is subject to license terms.
+* 
+*****************************************************************************/
+
+/************************************************************
+* 
+* BODY
+*
+*		*****************************************
+*		*										*
+*		*				#header					*
+*		*										*
+*		*****************************************
+*		*		*						*		*
+*		*	#	*						*	#	*
+*		*	n	*						*	i	*
+*		*	a	*		#body			*	m	*
+*		*	v	*						*	p	*
+*		*		*						*	o	*
+*		*		*						*	r	*
+*		*		*						*	t	*
+*		*		*						*	a	*
+*		*		*						*	n	*
+*		*		*						*	t	*
+*		*		*						*		*
+*		*****************************************
+*		*				#footer					*
+*		*****************************************
+
+*************************************************************/
+
+ 
+
+ 
+table.pageLayout
+{
+	margin:					0;
+	border:					0;
+	padding:				0;
+
+	width:					100%;
+	border-collapse:		collapse;
+	table-layout:			auto;
+	font-size:				.98em;
+}
+
+
+table.pageLayout td.column
+{
+	width:					140px;
+	vertical-align:			top;
+	background:				#eee;
+}
+
+
+/*****************************************************************************
+* 
+* #header
+*
+*		*************************
+*		*						*
+*		*		#banner			*
+*		*						*
+*		*************************
+*		*		#linkbar		*
+*		*************************
+* 
+*****************************************************************************/
+
+div.u {
+	top: 500px;
+    position: absolute;
+    z-index: -1;
+}
+
+div#banner
+{
+	margin:					0px;
+	border:					0px;
+	padding:				0px;
+
+	height:					84px;
+
+	background-repeat:		repeat-x;
+	background-color:		#f8f7dc; /* default if background-image fails */
+}
+
+div#banner img
+{
+	vertical-align:			bottom;
+	height:					84px;
+}
+
+div#linkbar
+{
+	margin-top:				1px;
+	margin-bottom:			0px;
+	margin-left:			1px;
+	margin-right:			0px;
+
+	padding-top:			4px;
+	padding-bottom:			0px;
+	padding-left:			0px;
+	padding-right:			0px;
+
+	background-color:		#17397D; /* #36c; */
+	color:					white;
+
+	height:					22px;
+
+	text-align:				right;
+	vertical-align:			middle;
+}
+
+div#linkbar a
+{
+	margin:					0px;
+	padding-top:			0px;
+	padding-bottom:			0px;
+	padding-left:			10px;
+	padding-right:			10px;
+	font-weight:			bold;
+	text-decoration:		none;
+	color:					white;
+}
+
+div#linkbar a:hover
+{
+	text-decoration:		underline;
+}
+
+
+
+/*****************************************************************************
+* 
+* #nav
+* 
+*****************************************************************************/
+td#navColumn
+{
+	height:					100%;
+	padding-top:			0;
+	padding-bottom:			5px;
+	padding-left:			0;
+	padding-right:			5px;
+}
+
+div#nav
+{
+	width:					140px;
+}
+
+div#nav h2
+{
+	margin:					0;
+	border:					1px solid black;
+	padding:				6px 0;
+
+	font-family:			Verdana, Arial, sans-serif;
+	font-size:				.95em;
+	font-weight:			bold;
+
+	color:					white;
+
+	text-align:				center;
+	vertical-align:			bottom;
+
+	background:				#36c;
+}
+
+div#nav h3
+{
+	margin:					0;
+	border:					1px solid black;
+	padding:				6px 6px;
+
+	font-size:				.60em;
+	font-family:			Arial, sans-serif;
+	font-weight:			normal;
+
+	background:				#E9EEF8;
+	color:					black;
+}
+
+div#nav h3.prev a,
+div#nav h3.prev a:visited
+{
+	color:					black;
+	text-decoration:		none;
+}
+
+div#nav h3.curr
+{
+	color:					black;
+	font-weight:			bold;
+}
+
+div#nav h3.next
+{
+	color:					#8D9096;
+}
+
+
+
+
+/*****************************************************************************
+* 
+* #important
+* 
+*****************************************************************************/
+div#important
+{
+	height:					100%;
+	width:					140px;
+
+	margin-right:			0;
+	padding-top:			0;
+	padding-left:			0;
+	padding-bottom:			5px;
+
+	background:				#eee;
+}
+
+td#importantColumn
+{
+	height:					100%;
+
+	margin-right:			0;
+	padding-top:			0;
+	padding-left:			0;
+	padding-bottom:			5px;
+}
+
+td.important
+{
+	vertical-align:			top;
+	margin:					0;
+	padding:				0;
+
+	height:					100%;
+}
+
+h2.important
+{
+	margin-top:				0px;
+	margin-bottom:			5px;
+	margin-left:			0px;
+	margin-right:			0px;
+	padding:				6px;
+
+	font-family:			Verdana, Arial, sans-serif;
+	font-size:				.95em;
+	font-weight:			bold;
+
+	color:					white;
+
+	text-align:				center;
+	vertical-align:			bottom;
+
+	background:				#36c;
+}
+
+h3.important
+{
+	font-size:				1em;
+	font-weight:			bold;
+	margin:					0;
+	padding:				0;
+}
+
+ul.important
+{
+	margin-left:			20px;
+	padding:				4px;
+}
+
+li.important
+{
+	margin-top:				10px;
+	font-size:				.9em;
+}
+
+
+/*****************************************************************************
+* 
+* #importantVeteran
+* 
+*****************************************************************************/
+/*
+div#importantVeteran
+{
+	height:					100%;
+	width:					140px;
+
+	margin-right:			0;
+	border:					1px solid red;
+	padding-top:			0;
+	padding-left:			0;
+	padding-bottom:			5px;
+
+	background:				#eee;
+}
+*/
+td#importantColumn
+{
+	height:					100%;
+
+	margin-right:			0;
+	padding-top:			0;
+	padding-left:			0;
+	padding-bottom:			5px;
+}
+
+td.importantVeteran
+{
+	vertical-align:			top;
+	margin:					0;
+	padding:				0;
+
+	height:					100%;
+}
+
+h2.importantVeteran
+{
+	margin-top:				0px;
+	margin-bottom:			5px;
+	margin-left:			0px;
+	margin-right:			0px;
+	padding:				6px;
+
+	font-family:			Verdana, Arial, sans-serif;
+	font-size:				.95em;
+	font-weight:			bold;
+
+	color:					white;
+
+	text-align:				center;
+	vertical-align:			bottom;
+
+	background:				#36c;
+}
+
+h3.importantVeteran
+{
+	font-size:				1em;
+	font-weight:			bold;
+	margin:					0;
+	padding:				0;
+}
+
+ul.importantVeteran
+{
+	margin-left:			10px;
+	padding:				0px;
+}
+
+li.importantVeteran
+{
+	margin-top:				2px;
+	font-size:				1em;
+	
+}
+
+
+
+
+/*****************************************************************************
+* 
+* #footer
+* 
+*****************************************************************************/
+div#footer
+{
+	padding:				5px;
+	text-align:				center;
+}
+
+
+
+/*****************************************************************************
+* 
+* A: FOOTER
+* 
+*****************************************************************************/
+a.footer
+{
+	color:					#444;
+	text-decoration:		underline;
+}
+
+a.footer:link
+{
+	color:					#444;
+	text-decoration:		underline;
+}
+
+a.footer:visited
+{
+	color:					#444;
+	text-decoration:		underline;
+}
+
+a.footer:hover
+{
+	text-decoration:		underline;
+	font-weight:			normal;
+	color:					#444;
+}
+a.footer:active
+{
+	color:					#444;
+	text-decoration:		underline;
+}
+
+
+
+/*************************************************************************/
+
+
+
+/*****************************************************************************
+* 
+* #body
+* 
+*****************************************************************************/
+td#bodyColumn
+{
+	padding: 				0 15px;
+	vertical-align:			top;
+	width:					100%;
+}
+
+div#body
+{
+	margin:					0;
+	padding:				0;
+	background-color:		white;
+	display:				inline-block;	
+}
+
+div#body table
+{
+	width:					100%;
+}
+
+
+/*****************************************************************************
+* 
+* HEADERS
+* 
+*****************************************************************************/
+h1
+{
+	margin-top:				5px;
+	margin-bottom:			5px;
+	margin-left:			0px;
+	margin-right:			0px;
+
+	padding:				0px;
+
+	font-family:			Verdana, Arial, sans-serif;
+	font-size:				1.2em;
+	font-weight:			bold;
+
+	text-align:				left;
+	vertical-align:			bottom;
+}
+
+div#body h2
+{
+	width:					250px;
+	margin:					20px 0 0 0;
+	padding:				4px;
+	border:					1px #000080 solid;
+	border-bottom:			0;
+	background-color:		#89ADE4;
+	
+	font-family:			Arial;
+	font-size:				15px;
+	font-weight:			bold;
+}
+
+div#body h3,h4,h5,h6
+{
+	margin-top:				4px;
+	margin-bottom:			4px;
+	margin-left:			0px;
+	margin-right:			0px;
+
+	border:					0;
+	padding:				0;
+
+	font-weigth:			bold;
+	font-size:				1.0em;
+}
+
+
+/*****************************************************************************
+*
+* ANCHORS
+*
+*****************************************************************************/
+a,
+a:link,
+a:visited,
+a:hover,
+a:active
+{
+	color:					#30f;
+	text-decoration:		none;
+}
+
+
+/*****************************************************************************
+* 
+* PARAGRAPHS
+* 
+*****************************************************************************/
+p
+{
+	margin-top:				10px;
+	margin-bottom:			20px;
+	margin-left:			0;
+	margin-right:			0;
+	border:					0;
+	padding:				0;
+
+	font-size:				.9em;
+}
+
+table.bodyAndImportant td.pageTitle p
+{
+	margin-top:				10px;
+	margin-bottom:			20px;
+	margin-left:			0;
+	margin-right:			0;
+	border:					0;
+	padding:				0;
+}
+
+
+
+
+
+
+/*****************************************************************************
+*
+* STRUTS VALIDATION
+*
+*****************************************************************************/
+p.errors
+{
+	margin-top:				10px;
+	font-size:				.9em;
+	font-weight:			bold;
+	color:					#f03;
+}
+ul.errors
+{
+	margin-left:			10px;
+	margin-bottom:			10px;
+
+	font-size:				1.25em;
+	font-weight:			800;
+	color:					#f03;
+}
+li.errors
+{
+	margin-left:			6px;
+	font-weight:			600;
+}
+
+
+
+/*******************************************************************************
+*
+* TABLES
+*
+* -Align contents of table cell horizontally/vertically.
+* 
+*******************************************************************************/
+table#info
+{
+	margin-top:				16px;
+	margin-bottom:			10px;
+	margin-left:			0px;
+	margin-right:			0px;
+	padding:				0px;
+	
+	border:					0px;
+
+	border-collapse:		collapse;
+	table-layout:			auto;
+	font-size:				0.9em;
+}
+
+table#info td
+{
+	padding:				8px;
+}
+
+
+/*******************************************************************************
+*
+* TABLE#FORM
+*
+* -Contained within body.
+* 
+*******************************************************************************/
+table#form,
+table.form
+{
+	margin-bottom:			20px;
+	padding:				0px;
+	
+	border:					0px;
+
+	border-collapse:		collapse;
+	table-layout:			auto;
+	font-size:				0.9em;
+
+	width:					90%;
+
+	height:					100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+table#form tr,
+table.form tr
+{
+	border:					1px solid #212291;
+}
+
+
+
+
+
+
+
+tr.odd
+{
+	background-color:		#E9EEF8;
+	margin-top:				2px;
+	margin-bottom:			2px;
+	margin-left:			2px;
+	margin-right:			2px;
+}
+
+tr.even
+{
+	background-color:		white;
+	margin-top:				2px;
+	margin-bottom:			2px;
+	margin-left:			2px;
+	margin-right:			2px;
+}
+
+table#form tr.directions
+{
+	background-color:		#89ADE4;
+}
+
+table#form td.left
+{
+	text-align:				left;
+}
+table#form td.center
+{
+	text-align:				center;
+}
+table#form td.right
+{
+	text-align:				right;
+}
+table#form td.top
+{
+	vertical-align:			top;
+}
+table#form td.middle
+{
+	vertical-align:			middle;
+}
+table#form td.bottom
+{
+	vertical-align:			bottom;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*******************************************************************************
+*
+* DIV#NOFORM
+*
+* -Complement table#form style.
+* 
+*******************************************************************************/
+div#noform
+{
+	margin-top:				15px;
+	margin-bottom:			20px;
+	margin-left:			5px;
+	margin-right:			5px;
+	padding:				0px;
+	
+	border:					0px;
+
+	width:					auto;
+	border-collapse:		collapse;
+	table-layout:			auto;
+	font-size:				1.0em;
+}
+
+div#noform ul
+{
+	font-size:				1.1em;
+
+	margin-top:				14px;
+	margin-bottom:			25px;
+	margin-left:			1.2em;
+	margin-right:			0px;
+	border:					0px;
+	padding:				0px;
+}
+
+
+
+
+/*******************************************************************************
+*
+* TABLE.GRID
+*
+* -Layout for table based grid.
+* 
+*******************************************************************************/
+table#form table.grid
+{
+	font-size:				1.0em;
+	border:					1px solid black;
+	background:				white;
+}
+
+table#form table.grid th
+{
+	border:					1px solid black;
+	background:				white;
+}
+
+table#form table.grid tr.grid
+{
+	border:					1px solid black;
+	text-align:				center;
+	background:				white;
+}
+
+table#form table.grid td.grid
+{
+	border:					1px solid black;
+	text-align:				center;
+	padding:				5px;
+	background:				white;
+	vertical-align:			top;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*******************************************************************************
+*
+* TABLE.INNER
+*
+* -Layout for table based grid.
+* 
+*******************************************************************************/
+table.inner
+{
+	margin:					0;
+	border:					0;
+	padding:				0;
+	font-size:				1.0em;
+	border-collapse:		collapse;
+	table-layout:			auto;
+}
+
+table.inner td
+{
+	vertical-align:			baseline;
+	margin:					0;
+	padding:				0;
+	border:					0;
+}
+
+table.inner td.formatmask
+{
+	vertical-align:			top;
+	font-size:				.9em;
+}
+
+table#form table.inner tr,
+table#form table.inner td.fieldLabel,
+table#form table.inner td.input,
+table#form table.inner td.full
+{
+	border:					0;
+	width:					auto;
+	vertical-align:			top;
+}
+
+table#form table.inner td.full
+{
+	padding:				0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*******************************************************************************
+* TD: FIELD LABELS
+*******************************************************************************/
+table#form td.fieldLabel,
+table.form td.fieldLabel
+{
+	margin:					0;
+	padding:				10px 10px;
+	
+
+	width:					50%;
+
+	vertical-align:			top;
+
+	border-top:				1px solid #212291;
+	border-bottom:			1px solid #212291;
+	border-left:			1px solid #212291;
+
+	height:					100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+td.leftFieldLabel
+{
+	margin:					0;
+	padding:				10px 10px;
+
+	width:					50%;
+
+	vertical-align:			top;
+
+	border-left:			1px solid #212291;
+
+	height:					100%;
+}
+
+td.rightFieldLabel
+{
+	margin:					0;
+	padding:				10px 10px;
+
+	width:					50%;
+
+	vertical-align:			top;
+
+	border-right:			1px solid #212291;
+
+	height:					100%;
+}
+
+
+
+table#form td.input,
+table.form td.input
+{
+	padding-top:			10px;
+	padding-bottom:			10px;
+	padding-left:			4px;
+	padding-right:			25px;
+
+	width:					45%;
+
+	vertical-align:			top;
+
+	border-top:				1px solid #212291;
+	border-bottom:			1px solid #212291;
+	border-right:			1px solid #212291;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.rightInput
+{
+	padding-top:			10px;
+	padding-bottom:			10px;
+	padding-left:			4px;
+	padding-right:			25px;
+
+	width:					45%;
+
+	vertical-align:			top;
+
+	border-right:			1px solid #212291;
+}
+
+table#form td.full,
+table.form td.full
+{
+	margin:					0px;
+	padding:				10px 10px;
+	width:					100%;
+
+	vertical-align:			top;
+
+	border:					1px solid #212291;
+}
+
+table#form td.half1,
+table.form td.half1
+{
+	margin:					0px;
+	padding:				10px 10px;
+	width:					80%;
+
+	vertical-align:			top;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+td.half
+{
+	border:					1px solid #212291;
+	width:					50%;
+	padding:				10px;
+}
+
+td.thirdfieldLabel
+{
+	width:					33%;
+	padding:				10px;
+	text-align:				center;
+	border-top:				1px solid #212291;
+	border-bottom:			1px solid #212291;
+	
+}
+
+td.blankColumn
+{
+	width:					1%;
+	padding:				10px;
+	text-align:				center;
+	border-top:				1px solid #212291;
+	border-bottom:			1px solid #212291;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+td.thirdsymbol
+{
+	width:					33%;
+	padding:				10px;
+	text-align:				center;
+	border-top:				1px solid #212291;
+	border-bottom:			1px solid #212291;
+
+}
+
+td.thirdinput
+{
+	width:					33%;
+	padding:				10px;
+	text-align:				center;
+	border-top:				1px solid #212291;
+	border-bottom:			1px solid #212291;
+	border-right:			1px solid #212291;	
+}
+
+
+td.middlesymbol
+{
+	padding:				10px;
+}
+
+
+td.middlesymbolborder
+{
+	padding:				10px;
+	border-top:				1px solid #212291;
+	border-bottom:			1px solid #212291;
+}
+
+
+td.answer
+{
+	font-weight:			bold;
+}
+
+td.claimHeading
+{
+	font-size:				1.1em;
+	font-weight:			bold;
+}
+
+table#form td.noborder
+{
+	border-right:			0;
+}
+
+
+
+
+
+
+.nowrap
+{
+	white-space:			nowrap;
+}
+
+
+table#form table
+{
+	font-size:				1.0em;
+}
+
+table#form table.indent tr
+{
+	border:					0;
+}
+
+table#form table.indent td
+{
+	border:					0;
+}
+
+
+table#form td.symbol,
+table.form td.symbol
+{
+	padding-top:			14px;
+	padding-left:			5px;
+	padding-right:			0px;
+
+	border-top:				1px solid #212291;
+	border-bottom:			1px solid #212291;
+
+	white-space:			nowrap;
+
+	vertical-align:			top;
+	text-align:				right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*****************************************************************************
+*
+* TABLE#EMPLOYMENTHISTORY
+*
+* -Used for displaying employment history employer table.
+*
+*******************************************************************************/
+table#employmentHistory
+{
+	margin-bottom:			20px;
+	border:					1px solid #212291;
+	border-collapse:		collapse;
+	padding:				0px;
+
+	border-collapse:		collapse;
+	table-layout:			auto;
+	font-size:				0.9em;
+}
+
+table#employmentHistory th
+{
+	background:				#36c;
+	font-weight:			bold;
+	text-align:				left;
+	padding:				7px;
+	color:					white;
+}
+
+table#employmentHistory tr td
+{
+	padding:				7px;
+}
+
+table#employmentHistory tr.odd,
+table#employmentHistory tr.odd td
+{
+	background-color:		#E9EEF8;
+}
+
+table#employmentHistory tr.even,
+table#employmentHistory tr.even td
+{
+	background-color:		white;
+}
+
+
+/*******************************************************************************
+*
+* TD: BUTTONS
+*
+* -Buttons should be placed at the bottom right of input tables
+*
+*******************************************************************************/
+td.button
+{
+	border:					0px;
+	padding-top:			10px;
+	padding-bottom:			0px;
+	padding-left:			0px;
+	padding-right:			0px;
+}
+
+div.button	
+{
+	border-collapse:		collapse;
+	table-layout:			auto;
+	text-align:				right;
+	margin-top:				0px;
+	margin-bottom:			10px;
+	margin-left:			7px;
+	margin-right:			0px;
+	border:					0;
+	padding:				0px 0px;
+}
+
+input.blueButton
+{
+	background-color:		#3366FE;
+	border:					1px solid #8795BE;
+
+	color:					white;
+
+	font-weight:			bold;
+	font-size:				small;
+	
+	width:					87px;
+	height:					23px;
+}
+
+input.greyButton
+{
+	background-color:		#9A9A9A;
+	border:					1px solid #0A1288;
+
+	color:					white;
+
+	font-weight:			900;
+	font-size:				small;
+	
+	width:					100px;
+	height:					25px;
+	
+	text-transform:			uppercase;
+}
+
+input.yellowButton
+{
+	background-color:		#ff0;
+	border:					1px solid #0A1288;
+
+	/* color:					black; */
+
+	font-weight:			900;
+	font-size:				small;
+	
+	width:					100px;
+	height:					25px;
+	
+	text-transform:			uppercase;
+}
+/*****************************************************************************
+*
+* #pageTitle
+*
+* -The following styles are used for the Page Title table.
+*
+*****************************************************************************/
+div.pageTitle
+{
+	width:					100%;
+	margin:					0;
+	padding:				0;
+}
+
+table.pageTitle
+{
+	margin:					0;
+
+	padding:				0;
+
+	border-top:				0;
+	border-bottom:			1px black solid;
+	border-left:			0;
+	border-right:			0;
+
+	border-collapse:		collapse;
+	width:					100%;
+
+	table-layout:			auto;
+}
+
+td.pageTitle
+{
+	vertical-align:			top;
+	padding:				0;
+}
+
+td.progressBar
+{
+	text-align:				right;
+	vertical-align:			bottom;
+	padding-bottom:			8px;
+	white-space:			nowrap;
+}
+
+img.progress
+{
+	width:					8px;
+	height:					12px;
+	padding-bottom:			1px;
+	vertical-align:			bottom;
+}
+
+img#leftProgress
+{
+	margin-left:			3px;
+}
+
+img#rightProgress
+{
+	margin-right:			3px;
+}
+
+
+/*****************************************************************************
+*
+* FORM INSTRUCTIONS
+*
+*****************************************************************************/
+.errorClass { border:  1px solid red; }
+
+
+.requiredAsterisk
+{
+	margin-top:				0px;
+	margin-bottom:			2px;
+	margin-left:			0px;
+	margin-right:			0px;
+
+	padding:				2px;
+
+	font-weight:			bold;
+
+	color:					red;
+}
+
+.right {
+  	right: 15px;
+    width: auto;
+    padding: 10px;
+    position: absolute;
+    top: -4px;
+    outline: none;
+    opacity:1!important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.leftASub {
+  	font-size:.70em;
+	font-style: italic;
+}
+
+/*****************************************************************************
+*
+* FORM ELEMENTS
+*
+*****************************************************************************/
+div#buttons
+{
+	width:					100%;
+}
+
+div#cancelButtonContainer
+{
+	text-align:				right;
+}
+
+div#continueButtonContainer
+{
+	padding-left:			10px;
+	float:					right;
+	padding-right:			105px;
+}
+
+input.formButton
+{
+	background-image:		url('../images/button_background.gif');
+	background-repeat:		repeat;
+	background-color:		#1187ed;
+	color:					white;
+
+	font-family:			Verdana, Arial, Helvetica, sans-serif;
+	font-weight:			bold;
+	font-size:				.85em;
+
+	height:					26px;
+}
+
+
+
+fieldset
+{
+	margin-right:			15px;
+	padding:			0px;
+	float:				left;
+	display:			block;
+}
+
+fieldset.display
+{
+	margin-right:			15px;
+	padding:			0px 4px 4px;
+	float:				left;	
+	display:			block;
+	width:				90%;
+}
+
+fieldset legend
+{
+	font-size:			small;
+	color:				blue;
+}
+
+label.radio
+{
+	display:				block;
+	margin-top:				0px;
+	margin-bottom:			10px;
+	margin-left:			0px;
+	margin-right:			0px;
+}
+
+.radio
+{
+	margin-top:				0px;
+	margin-bottom:			0px;
+	margin-left:			0px;
+	margin-right:			.5em;
+
+	padding-top:			0px;
+	padding-bottom:			8px;
+	padding-left:			0px;
+	padding-right:			0px;
+}
+
+label.checkbox
+{
+	display:				block;
+	margin-top:				0px;
+	margin-bottom:			10px;
+	margin-left:			0px;
+	margin-right:			0px;
+}
+
+.checkbox
+{
+	margin-top:				0px;
+	margin-bottom:			0px;
+	margin-left:			0px;
+	margin-right:			.5em;
+
+	padding-top:			0px;
+	padding-bottom:			8px;
+	padding-left:			0px;
+	padding-right:			0px;
+}
+
+label.inline
+{
+	white-space:			nowrap;
+	display:				inline;
+	margin-right:			1em;
+}
+
+div.clear
+{
+	clear:					both;
+}
+
+div.textCount
+{
+	margin-top:-1em; 
+	text-align:right;
+}
+
+/*****************************************************************************
+*
+* ACCESSIBILITY
+* - skip navigation link
+*
+*****************************************************************************/
+#skipNav
+{
+	height:					0;
+	width:					0;
+	overflow:				hidden;
+	position:				absolute;  /* for the benefit of IE5 Mac */
+}
+
+
+
+table#form p,
+
+table.bodyAndImportant p
+{
+	margin:					0;
+	border:					0;
+	font-size:				1em;
+}
+
+
+
+
+
+
+table#form .indent,
+table#form1 .indent,
+
+table.bodyAndImportant .indent
+{
+	padding:				0px;
+	height:					100%;
+}
+
+ 
+* table#form .indent,
+* table#form1 .indent,
+* table.bodyAndImportant .indent
+{
+	height:					1%;
+ 	margin-left:			2em;
+	height:					100%;
+}
+
+div.indent p
+{
+	width:					90%;
+}
+
+span.indentNote
+{
+	width:					97%;
+	font-style: 			italic;
+	font-size:				1.0em;
+	color:					#91848f;
+	padding-left:			25px;
+}
+
+div.indentL p
+{
+	width:					97%;
+	padding-left:			25px;
+	margin-top:				2px;
+	margin-bottom:			2px;
+	margin-left:			1px;
+	margin-right:			1px;
+}
+
+div.emp
+{
+	width:					90%;
+}
+
+div.dependent
+{
+	width:					90%;
+}
+
+div.fcSummary
+{
+	width:					90%;
+}
+
+
+table#form label.indent
+{
+	display:				block;
+	margin-left:			1.5em;
+}
+
+
+
+
+
+
+span.bullet
+{
+	float:					left;
+	height:					100%;
+	font-weight:			bold;
+	font-size:				1.2em;
+	vertical-align:			top;
+}
+
+* html span.bullet
+{
+	margin-right:			10px;
+	vertical-align:			top;
+}
+
+table#form label.addressRadio
+{
+	margin-left:			1.5em; 
+	display:				block;
+}
+
+
+
+
+
+
+
+.addressRadio
+{
+	margin-left:			-1.75em; 
+
+}
+
+table#form span.addressRadio
+{
+	margin-top:				-1.3em; 
+	margin-left:			0.75em; 
+	display:				block;
+}
+
+
+
+
+
+
+
+
+table#form .addressNoRadio
+{
+	margin-left:			2.3em; 
+	padding:				0px;
+	display:				block;
+}
+
+
+
+
+
+
+
+
+span.important
+{
+	font-weight:			bold;
+	font-style:				italic;
+}
+
+span.boldUnderline
+{
+	font-weight:			bold;
+	text-decoration:		underline;
+}
+
+span.boldRed
+{
+	font-weight:			bold;
+	color:		            red;
+}
+
+ul.indent
+{
+	margin-left:			1.25em;
+	padding:				0px;
+}
+
+p.inline
+{
+	display:				inline;
+}
+
+td.qtnr
+{
+	font-weight:			bold;
+	font-style:				italic;
+}
+
+hr
+{
+	border-color:			#9D9DA1;
+	background:				#9D9DA1;
+}
+
+.note
+{
+	font-style:				italic;
+}
+
+
+/*****************************************************************************
+*
+* BODY & IMPORTANT
+* - body and important in one table
+*
+*****************************************************************************/
+td.bodyAndImportant
+{
+	margin:					0;
+	padding:				0;
+	vertical-align:			top;
+}
+
+form
+{
+	margin:					0;
+	border:					0;
+	padding:				0;
+}
+
+table.bodyAndImportant
+{
+	margin:					0;
+	padding:				0;
+
+	border-collapse:		collapse;
+	table-layout:			auto;
+	width:					100%;
+
+	vertical-align:			top;
+	font-size:				0.9em;
+}
+
+table.bodyAndImportant h1
+{
+	font-size:				1.37em !important;
+}
+
+table.bodyAndImportant td.progressBar
+{
+	font-size:				1.2em !important;
+}
+
+table.bodyAndImportant td.full
+{
+	margin:					0px;
+	padding:				10px 10px;
+
+	vertical-align:			top;
+
+	border:					1px solid #212291;
+}
+
+table.bodyAndImportant td.fieldLabel
+{
+	margin:					0px;
+	padding:				10px 10px;
+
+	vertical-align:			top;
+
+	border-top:				1px solid #212291;
+	border-bottom:			1px solid #212291;
+	border-left:			1px solid #212291;
+}
+
+table.bodyAndImportant td.input
+{
+	padding-top:			10px;
+	padding-bottom:			10px;
+	padding-left:			4px;
+	padding-right:			25px;
+
+	width:					40%;
+
+	vertical-align:			top;
+
+	border-top:				1px solid #212291;
+	border-bottom:			1px solid #212291;
+	border-right:			1px solid #212291;
+}
+
+table.bodyAndImportant td.symbol
+{
+	padding-top:			14px;
+	padding-left:			5px;
+	padding-right:			0px;
+
+	border-top:				1px solid #212291;
+	border-bottom:			1px solid #212291;
+
+	white-space:			nowrap;
+
+	vertical-align:			top;
+	text-align:				right;
+}
+
+
+td.padding
+{
+	width:					15px;
+	background:				white;
+}
+
+td.noTable
+{
+	margin:					0;
+	border:					0;
+	padding:				10px 0;
+
+	vertical-align:			top;
+}
+
+table.bodyAndImportant li.important
+{
+	margin:					0;
+	font-size:				1.0em;
+}
+
+table.bodyAndImportant div#buttons
+{
+	font-size:				1.2em;
+}
+
+table.header
+{
+	width:					100%;
+	border-collapse:		collapse;
+	padding:				0px;
+	margin:					0px;
+}
+
+table.header td
+{
+	padding:				0px;
+}
+
+.label
+{
+	font-family:			Arial, Helvetica, sans-serif;
+	font-size:				10pt;
+	padding:				5px;
+	outline: 				none;
+}
+
+.value
+{
+	font-family:			Arial, Helvetica, sans-serif;
+	font-size:				10pt;
+	padding:				5px;
+	font-weight:			bold;
+}
+
+.bold
+{
+	font-weight:			bold;
+}
+
+.info
+{
+	background-color: 		#edeeef;
+	border-collapse:		collapse;
+	clear:					both;
+	width:					100%;
+}
+
+.data
+{
+ 	white-space:			nowrap;
+	vertical-align:			top;
+}
+
+/******************** DISPLAY TABLE ********************************/
+
+table.display_table
+{
+	border-collapse:		collapse;
+	width:					100%;
+	clear:					both;
+	table-layout:			auto;
+}
+
+table.display_table#left
+{
+	border-collapse:		collapse;
+	width:					100%;
+	float:					left;
+	margin-bottom:			5px;
+	padding-bottom:			5px;
+}
+
+table.display_table a
+{
+	color:					blue;
+	text-decoration:		none;
+}
+table.display_table th.display_th_hidden
+{
+	display:				none;
+}
+
+table.display_table tr td.display_td_hidden
+{
+	display:				none;
+}
+	
+table.display_table tr.display_tr_odd
+{
+	background-color:		#edeeef;
+	text-align:				left;
+	vertical-align:			top;
+}
+
+table.display_table tr.display_tr_msk
+{
+	background-color:		#FFFFFF;
+	text-align:				left;
+	vertical-align:			top;
+}
+
+table.display_table tr.display_tr_highlight
+{
+	background-color:		#ffffb3;
+	text-align:				left;
+	vertical-align:			top;
+}
+
+table.display_table td.subsection
+{
+	background-color:		#e9eef8;
+	font-weight:			bold;
+	text-align:				left;
+	vertical-align:			top;
+}
+
+table.display_table td.selected
+{
+	background-color:		#527ec2;
+	color:					white;
+}
+
+table.display_table th
+{
+	border:					1px #cdcdcd solid;
+	font-weight:			bold;
+	padding:				4px;
+	background-color:		#2C5F81;
+	color:					white;
+	text-align:				left;
+}
+
+table.display_table th a
+{
+	color:					white;
+	text-decoration:		none;
+}
+
+table.display_table th input.checkboxInput
+{
+	margin-left:			2px;
+}
+
+table.display_table td
+{
+	border:					1px #CDCDCD solid;
+	padding:				4px 6px;
+}
+
+table.display_table td.small
+{
+	width:					10%;
+}
+
+table.display_table td.underline
+{
+	text-decoration:		underline;
+}
+
+table.display_table tfoot
+{	
+	color:					white;
+	background-color:		#2C5F81;
+	width:					100%;
+	font-family:			Tahoma;
+}
+
+table.display_table tfoot td
+{
+	border-color:			#2C5F81;
+	width:					100%;
+	padding:				2px;
+	font-weight:			bold;
+}
+
+table.display_table tfoot a
+{
+	color:					white;
+	font-weight:			bold;
+	text-decoration:		underline;
+}
+
+table.display_table tfoot a.direction
+{
+	color:					#ffffb3;
+	text-decoration:		none;
+}
+
+table.display_table tfoot ul
+{
+	float:					right;
+	list-style:				none;
+	margin:					0;
+	padding:				0;
+	width:					auto;
+}
+
+table.display_table tfoot ul li.label
+{
+	color:					white;
+	display:				block;
+	font-weight:			bold;
+	text-align:				center;
+	padding:				1px;
+	width:					10em;
+}
+
+table.display_table tfoot ul li
+{	
+	color:					white;
+	display:				block;
+	float:					left;
+	padding:				1px;
+	width:					2em;
+	white-space:			nowrap;
+}
+
+table.display_table tfoot ul li a
+{
+	color:					white;
+	font-weight:			bold;
+	text-decoration:		underline;
+}
+
+table.display_table tfoot ul li a.direction
+{
+	color:					#ffffb3;
+	font-weight:			bold;
+	text-decoration:		none;
+}
+
+table.display_table tfoot ul li a#selectedPage
+{
+	color:					#ffffb3;
+	font-weight:			bold;
+	text-decoration:		none;
+}
+
+div.tfoot_left
+{
+	display:				inline;
+	float:					left;
+	padding:				1px;
+}
+
+textarea
+{
+	margin:					0;
+	width:					99%;
+}
+
+div.pagination
+{
+	background-color:		#2C5F81;
+	color:					white;
+	margin-bottom:			2px;
+	width:					100%;
+	font-family:			Tahoma;
+	font-size:				10pt;
+	text-align:				right;
+	display:				block;
+}
+
+div.pagination a
+{
+	color:					white;
+}
+
+table.display_table th
+{
+	border:					1px #999966 solid;
+	padding:				2px;
+	font-size:				10pt;
+	font-weight:			bold;
+	color:					white;
+	text-align:				center;
+}
+
+table.display_table th.display_th_sorted 
+{
+	margin:					0px;
+	border:					1px #999966 solid;
+	padding:				2px;
+	text-align:				center;
+}
+
+td.display
+{
+	border:					1px #ffffff solid;
+	padding-top:			2px;
+	padding-bottom:			2px;
+	padding-left:			2px;
+	padding-right:			2px;
+	table-layout:			fixed;
+	font-size:				10pt;
+}
+
+/*****************************************************************************
+*
+* DISPLAY TAG: HYPERLINKS
+*
+*****************************************************************************/
+
+th.display_th_sortable a:hover 
+{
+	text-decoration:		underline;
+	color:					white;
+	font-weight:			bold;
+}
+
+th.display_th_sorted a:hover 
+{
+	color:					white;
+	font-weight:			bold;
+}
+
+th.display_th_sorted a, th.display_th_sortable a 
+{
+	background-position:	right;
+	background-repeat:		no-repeat;
+	display:				block;
+	width:					100%;
+}
+
+
+
+#lightbox
+{
+	display: none;
+
+    z-index:1000;
+    
+    /* make it cover the whole screen */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+
+    background-image:url('../images/lightbox.png');
+}
+
+#loading
+{
+    /* Do not display it on entry */
+    display: none;
+
+	/* Display it on the layer with index 1001.
+    Make sure this is the highest z-index value
+    used by layers on that page */
+    z-index:1001;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.testBanner
+{
+	background-color:yellow;
+	font-size:60px;
+	font-weight:bold;
+	color:red;
+	text-align:center;
+}
+
+/* newly added ones */
+
+.error {
+    border: 2px solid #f00;
+}
+
+/* .valid {
+    border: 2px solid #000;
+} */
+
+form, input {
+    margin: 2px;
+}
+/* .fieldError {
+   border: 2px solid #f00;
+    margin-left:7px;
+}
+ */
+ 
+.nameLabel{
+	 margin-right: 50px;
+}
+.cntryGroup{
+	margin-right : 75px;
+}
+
+/* fieldset div {
+    margin-bottom: 2em;
+  }
+fieldset .help {
+    display: inline-block;
+  }
+
+}

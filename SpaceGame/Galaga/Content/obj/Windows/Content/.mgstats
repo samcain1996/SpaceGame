@@ -1,0 +1,6 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/Sam/source/repos/Galaga/Galaga/Content/deathSound.wav","C:/Users/Sam/source/repos/Galaga/Galaga/Content/bin/Windows/Content/deathSound.xnb","SoundEffectProcessor","SoundEffectContent",137230,137291,0.1941762
+"C:/Users/Sam/source/repos/Galaga/Galaga/Content/enemy.png","C:/Users/Sam/source/repos/Galaga/Galaga/Content/bin/Windows/Content/enemy.xnb","TextureProcessor","Texture2DContent",2278,4181,0.2786588
+"C:/Users/Sam/source/repos/Galaga/Galaga/Content/explosion.png","C:/Users/Sam/source/repos/Galaga/Galaga/Content/bin/Windows/Content/explosion.xnb","TextureProcessor","Texture2DContent",1209,4181,0.3072785
+"C:/Users/Sam/source/repos/Galaga/Galaga/Content/Fonts/Ass.spritefont","C:/Users/Sam/source/repos/Galaga/Galaga/Content/bin/Windows/Content/Fonts/Ass.xnb","FontDescriptionProcessor","SpriteFontContent",2008,70673,0.2101911
+"C:/Users/Sam/source/repos/Galaga/Galaga/Content/laser.wav","C:/Users/Sam/source/repos/Galaga/Galaga/Content/bin/Windows/Content/laser.xnb","SoundEffectProcessor","SoundEffectContent",110624,110685,0.1881706
